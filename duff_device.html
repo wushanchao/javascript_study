@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8" />
+<title>Duff's device</title>
+<script type="text/javascript">
+var items = [];
+for(var j=0;j<17; j++){
+	items.push(j);
+}
+console.log(items);
+
+var iterations = Math.floor(items.length /8);
+var starAt = items.length % 8;
+var i=0;
+do{
+	switch(starAt){
+		 case 0:alert(items[i++]);
+		 case 7:alert(items[i++]);
+		 case 6:alert(items[i++]);
+		 case 5:alert(items[i++]);
+		 case 4:alert(items[i++]);
+		 case 3:alert(items[i++]);
+		 case 2:alert(items[i++]);
+		 case 1:alert(items[i++]);
+	}
+	starAt = 0;
+	iterations--;
+}while(iterations > -1);
+</script>
+</head>
+<body></body>
+</html>
