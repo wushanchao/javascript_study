@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8" />
+<title>链式调用2</title>
+<script type="text/javascript">
+//该函数的作用就是，函数参数和使用函数位置调换。还需要完善的是，去掉第一个参数，也就是函数位置指定。因为不知道，var arg = [1,2];使function(arg)等同于function(1,2)，所以用了很笨拙，很冗余的代码写法。这个是柯里化后的版本，这个函数也暂时支持最多2参数。
+var wsc = function(func_positon){
+    if(func_positon == 0){
+            return function(){
+            var original_arry_len = this.length ,original_arry = this, Arg = arguments,Arg_length = arguments.length,return_array = [],real_func = Arg[func_positon];
+
+            for(var i=0; i<original_arry_len; i++){
+                return_array[i] = real_func(original_arry[i]);
+            }
+
+            return return_array;
+        }
+    }
+
+    if(func_positon == 1){
+        return function(){
+            var original_arry_len = this.length ,original_arry = this, Arg = arguments,Arg_length = arguments.length,return_array = [],real_func = Arg[0];
+
+            if(Arg_length == 2){
+                for(var i=0; i<original_arry_len; i++){
+                    return_array[i] = real_func(original_arry[i],Arg[1]);
+                }
+            }
+            return return_array;
+        }
+    }
+    if(func_positon == 2){
+        return function(){
+            var original_arry_len = this.length ,original_arry = this, Arg = arguments,Arg_length = arguments.length,return_array = [],real_func = Arg[1];
+
+            if(Arg_length == 2){
+                for(var i=0; i<original_arry_len; i++){
+                    return_array[i] = real_func(Arg[0],original_arry[i]);
+                }
+            }
+            return return_array;
+        }
+    }  
+    
+}
+
+  
+function double(x){  
+    return x * 2;  
+}
+
+
+function inc(x,y){ 
+    return x + y;
+}
+
+
+// Array.prototype.wsc = wsc(0);
+// var numTemp = [1, 2, 3].wsc(double).wsc(double).wsc(double);  
+
+// Array.prototype.wsc1 = wsc(1);
+// var numTemp = [1,2,3].wsc1(inc,1);
+
+Array.prototype.wsc2 = wsc(2);
+var numTemp = [1,2,3].wsc2(2,inc);
+
+console.log(numTemp);
+</script>
+</head>
+<body></body>
+</html>

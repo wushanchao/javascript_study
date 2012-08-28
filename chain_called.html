@@ -4,7 +4,7 @@
     <meta charset="utf8" />
 <title>链式调用</title>
 <script type="text/javascript">
-//该函数的作用就是，函数参数和使用函数位置调换。还需要完善的是，去掉第一个参数，也就是函数位置指定。因为不知道，var arg = [1,2];使function(arg)等同于function(1,2)，所以用了很笨拙，很冗余的代码写法。这个函数也暂时支持最多3参数。
+//该函数的作用就是，函数参数和使用函数位置调换。还需要完善的是，去掉第一个参数，也就是函数位置指定。因为不知道，var arg = [1,2];使function(arg)等同于function(1,2)，所以用了很笨拙，很冗余的代码写法。这个函数也暂时支持最多3参数。还有一种就是用函数柯里化，就是[1,2,3].wsc1(inc,5);或者[1,2,3].wsc2(5.inc);
 Array.prototype.wsc = function(func){  
     var original_arry_len = this.length ,original_arry = this, Arg = arguments,Arg_length = arguments.length,return_array = [],func_positon= Arg[0] || 0,real_func = Arg[func_positon];
 
