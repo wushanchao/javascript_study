@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8" />
+<title>insertBefore和appendChild的使用例子</title>
+<script type="text/javascript">
+window.onload = function(){
+	var li_content = document.getElementById('li_content'),
+	li_father = document.getElementById('li_father'),
+	create_li = document.getElementById('create_li');
+
+	create_li.onclick = function(){
+		var new_li = document.createElement('li');
+		var exist_li = li_father.getElementsByTagName('li');
+		new_li.innerHTML = li_content.value;
+
+		exist_li.length == 0 ? li_father.appendChild(new_li) : li_father.insertBefore(new_li,exist_li[0]);
+	};
+}
+</script>
+</head>
+
+<body>
+<input type="text" id="li_content" />
+<input type="button" id="create_li"  value="创建li" />
+<ul id="li_father">
+
+</ul>
+</body>
+</html>
