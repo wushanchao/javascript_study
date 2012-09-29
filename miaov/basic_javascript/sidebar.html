@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute; right:0; top:0;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>侧边栏</title>
+<script src="move.js"></script>
+<script>
+/*
+效果是，无论滚动条怎么滚，侧边栏区域始终在侧边中央.
+需要数据，滚动条不可视区域的高度，元素的所在位置。
+*/
+window.onresize=window.onload=window.onscroll=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+	var t=(document.documentElement.clientHeight-oDiv.offsetHeight)/2;//这个t是为了通过计算得出垂直居中位置
+	
+	oDiv.style.top=scrollTop+200+'px';//设置元素高度咯
+	// startMove(oDiv, {top: scrollTop+t});
+};
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="div1">
+</div>
+</body>
+</html>
