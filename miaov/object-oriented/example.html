@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<title>面向对象的js，最基本概念</title>
+<script type="text/javascript">
+function Person(name,sex){
+    this.name = name;
+    this.sex = sex;
+}
+
+Person.prototype.show_name = function(){
+    console.log(this.name);
+};
+Person.prototype.show_sex = function(){
+    console.log(this.sex);
+};
+
+var p1 = new Person("wsc","male");
+p1.show_name();   
+
+function Worker(name, sex, job){
+    Person.call(this, name, sex);//继承父类的构造函数
+    this.job = job;
+}
+
+Worker.prototype.show_job =function(){//继承父类的方法
+    console.log(this.job);
+}
+
+for(var i in Person.prototype){
+    Worker.prototype[i] = Person.prototype[i];
+}
+var w1 = new Worker("wsc2","male","frontend-engineer");
+w1.show_name();
+w1.show_job();
+w1.show_sex();
+p1.show_job();
+
+</script>
+</head>
+<body></body>
+</html>
