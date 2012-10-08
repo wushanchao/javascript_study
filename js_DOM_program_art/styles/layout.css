@@ -1,0 +1,128 @@
+/*消除浏览器默认的外边距和内边距*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /*整个页面内容居中*/
+  margin: 1em auto;
+  /*采用渐变图片横向平铺，末尾颜色与背景色一致*/
+  background-image: url(../images/background.gif);
+  background-attachment: fixed;
+  background-position: top left;
+  background-repeat: repeat-x;
+  /*设置页面内容的最大宽度*/
+  max-width: 80em;
+}
+#header {
+  /*在头部区域，往底部右方放置背景图片*/
+  background-image: url(../images/guitarist.gif);
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  /*边框宽度0.1em，细线，边框底部无宽度*/
+  border-width: 0.1em;
+  border-style: solid;
+  border-bottom-width: 0;
+}
+/*导航区域布局*/
+#navigation {
+
+  background-image: url(../images/navbar.gif);
+  background-position: bottom left;
+  background-repeat: repeat-x;
+
+  border-width: 0.1em;
+  border-style: solid;
+  border-bottom-width: 0;
+  border-top-width: 0;
+
+  
+}
+#navigation_inner{
+  padding-left: 10%;
+}
+
+#navigation ul {
+  width: 100%;
+  overflow: hidden;
+  border-left-width: 0.1em;
+  border-left-style: solid;
+}
+#navigation li {
+  /*改变li的默认块级属性，变成内联式*/
+  display: inline;
+  /*左浮动，是为了li元素并排*/
+  float: left;
+}
+#navigation li a {
+  display: block; 
+  padding: 0.5em 2em;
+  border-right: 0.1em solid;
+}
+#content {
+  border-width: 0.1em;
+  border-style: solid;
+  border-top-width: 0;
+  padding: 2em 10%;
+  line-height: 1.8em;
+}
+#about #header {
+  background-image: url(../images/lineup.gif);
+}
+#photos #header {
+  background-image: url(../images/basshead.gif);
+}
+#live #header {
+  background-image: url(../images/bassist.gif);
+}
+#contact #header {
+  background-image: url(../images/drummer.gif);
+}
+#content img {
+  border-width: 0.1em;
+  border-style: solid;
+  outline-width: 0.1em;
+  outline-style: solid;
+}
+#imagegallery li {
+  display: inline;
+}
+#slideshow {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+/*不用HTML的圆角边框，是靠相同背景的透明图片实现*/
+img#frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  border-width: 0;
+  outline-width: 0;
+}
+img#preview {
+  position: absolute;
+  border-width: 0;
+  outline-width: 0;
+}
+dl {
+  overflow: hidden;
+}
+dt {
+  float: left;
+}
+dd {
+  float: left;
+}
+label {
+  display: block;
+}
+fieldset {
+  border: 0;
+}
+td {
+  padding: .5em 3em;
+}

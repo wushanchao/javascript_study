@@ -1,0 +1,4 @@
+/*相当于引用命名空间，将样式分为三类，颜色，布局，文本*/
+@import url(color.css);
+@import url(layout.css);
+@import url(typography.css);
