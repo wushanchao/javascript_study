@@ -23,14 +23,14 @@ console.log("Object的成员数量:"+object_member_number);
 //所以
 var obj1 = new Object();
 var obj2 = {};
-//这些个其实就是复制Object.prototype到obj1和obj2
+console.log("obj1的构造器是"+obj1.constructor);
 
 function MyObject(){
 }
 
-console.log("原型的构造器指向函数自身："+(MyObject.prototype.constructor == MyObject));
+console.log("函数的原型的构造器指向函数自身："+(MyObject.prototype.constructor == MyObject));
 delete MyObject.prototype.constructor;//删除当前原型的构造器
-console.log("删除了当前原型构造器后，指向父类："+(MyObject.prototype.constructor == Object));
+console.log("删除了函数的原型构造器后，指向父类："+(MyObject.prototype.constructor == Object));
 console.log("所以MyObject.prototype与一个普通对象new Object()没有区别："+(MyObject.prototype.constructor == new Object().constructor));
 //由此我们知道，JavaScript对象的本质是，指向其原型，并拥有一个成员列表的结构
 </script>
