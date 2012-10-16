@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'></meta>
+<title></title>
+<script type="text/javascript">
+// 对象本无根，类型亦无形
+// 如果把null比作空白，首先查看null的类型，得知null是Object类型。那么null是空的对象。而空的对象是所有对象的基础，也就是所有对象的根。然后，我们知道原型其实是一个对象实例，而构造器都一个原型，构造器所创建的实例，都来自于构造器的原型。这就是从表现上，看起来是类实例对象；这就是为什么类型亦无形，因为实际上没类型。
+console.log(typeof null);//Object
+var object_member_number = 0;
+for(var i in null){
+    object_member_number++;
+}
+console.log("null的成员数量"+object_member_number);
+//Object()原型
+var obj = Object.prototype;
+var object_member_number = 0;
+for(var n in obj){
+    object_member_number++;
+}
+console.log("Object的成员数量:"+object_member_number);
+//由此得知Object()构造器的原型是一个空的对象,也就是null
+//所以
+var obj1 = new Object();
+var obj2 = {};
+//这些个其实就是复制Object.prototype到obj1和obj2
+
+function MyObject(){
+}
+
+console.log("原型的构造器指向函数自身："+(MyObject.prototype.constructor == MyObject));
+delete MyObject.prototype.constructor;//删除当前原型的构造器
+console.log("删除了当前原型构造器后，指向父类："+(MyObject.prototype.constructor == Object));
+console.log("所以MyObject.prototype与一个普通对象new Object()没有区别："+(MyObject.prototype.constructor == new Object().constructor));
+//由此我们知道，JavaScript对象的本质是，指向其原型，并拥有一个成员列表的结构
+</script>
+</head>
+<body></body>
+</html>
