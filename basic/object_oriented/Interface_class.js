@@ -1,4 +1,4 @@
-//js接口构造器
+//js接口构造器，来自于《JavaScript设计模式》
 var Interface = function(name, methods) {
     if(arguments.length != 2) {
         throw new Error("Interface constructor called with " + arguments.length

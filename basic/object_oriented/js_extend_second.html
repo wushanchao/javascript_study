@@ -5,6 +5,7 @@
 
 <title>面向对象的js，最基本概念</title>
 <script type="text/javascript">
+// 来自于妙味课堂视频
 function Person(name,sex){
     this.name = name;
     this.sex = sex;
@@ -25,11 +26,11 @@ function Worker(name, sex, job){
     this.job = job;
 }
 
-Worker.prototype.show_job =function(){//继承父类的方法
+Worker.prototype.show_job =function(){
     console.log(this.job);
 }
 
-for(var i in Person.prototype){
+for(var i in Person.prototype){//继承父类的方法
     Worker.prototype[i] = Person.prototype[i];
 }
 var w1 = new Worker("wsc2","male","frontend-engineer");
@@ -37,7 +38,6 @@ w1.show_name();
 w1.show_job();
 w1.show_sex();
 p1.show_job();
-sc
 </script>
 </head>
 <body></body>

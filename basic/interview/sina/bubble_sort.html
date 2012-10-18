@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+<title>js冒泡排序</title>
+<script type="text/javascript">
+function bubble_sort(array){
+    var i,j,temp,array_length = array.length;
+    for(i=0; i<array_length; i++){//第n次
+        for(j=0; j<array_length; j++){//筛选出最大值，调换
+            if(array[i] < array[j]){
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+    return array;
+}
+console.log(bubble_sort([3,45,23,22,1,46,666]));
+
+</script>
+</head>
+<body>
+写一个冒泡排序算法。
+</body>
+</html>

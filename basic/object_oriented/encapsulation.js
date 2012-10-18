@@ -1,3 +1,4 @@
+// 来自于《JavaScript设计模式》
 var Book = (function() {
   
   // 静态变量
@@ -66,3 +67,4 @@ Book.prototype = {
 var xiyouji = new Book("007","西游记","吴承恩");
 // xiyouji.getTitle = function(){console.log("稀有计")};
 console.log(xiyouji.getTitle());
+
