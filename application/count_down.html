@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>倒计时</title>
+<script type="text/javascript">
+    function count_down(arg_year,arg_month,arg_day){//倒计时通用函数
+        var oDateEnd=new Date();//声明时间对象
+        var oDateNow=new Date();
+        
+        var iRemain=0;
+        
+        var iDay=0;
+        var iHour=0;
+        var iMin=0;
+        var iSec=0;
+
+        oDateEnd.setFullYear(parseInt(arg_year));//设置年月日
+        oDateEnd.setMonth(parseInt(arg_month)-1);
+        oDateEnd.setDate(parseInt(arg_day));
+        oDateEnd.setHours(0);
+        oDateEnd.setMinutes(0);
+        oDateEnd.setSeconds(0);
+
+        iRemain=(oDateEnd.getTime()-oDateNow.getTime())/1000;//getTime()方法返回距 1970 年 1 月 1 日之间的秒数。这句代码的意思，就是你设置的倒计时时间与当前时间的短距离
+
+        if(iRemain<=0)//距离小于0，意味着你设置的倒计时时间，是以前时间
+        {
+            
+            iRemain=0;
+            alert('已过时间');
+        }
+
+        iDay=parseInt(iRemain/86400);//一天等于86400秒，算出几天
+        iRemain%=86400;//去除天数后，剩下的小时秒数
+        
+        iHour=parseInt(iRemain/3600);//得出剩下多少小时
+        iRemain%=3600;
+        
+        iMin=parseInt(iRemain/60);//得出剩下多少分钟
+        iRemain%=60;
+        
+        iSec=iRemain;//得出剩下多少秒
+
+        function fillZero(num, digit)//这个函数用来往数字前面加0，可以不用到
+        {
+            var str=''+num;//数字转化为字符串
+            
+            while(str.length<digit)
+            {
+                str='0'+str;
+            }
+            
+            return str;
+        }
+        
+        return {"day":iDay, "hour":iHour, "min":iMin,"sec":iSec};
+    }
+    console.log(count_down(2013,1,1));
+</script>
+</head>
+<body></body>
+</html>

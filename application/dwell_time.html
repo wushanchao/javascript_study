@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>页面停留时间</title>
+<script type="text/javascript">
+function dwell_time(arg_div_id){//TODO:样式也要作为参数进去
+    var sec=0;
+    var min=0;
+    var hour=0;
+    var input_dwell_time = document.getElementById('dwell_time');//引用body里面的id为dwell_time的元素
+    var div_dwell_time = document.getElementById(arg_div_id);
+    function get_dwell_time(){
+        sec++;
+        if(sec == 60){
+            sec=0,min = min +1;
+        }
+        if(min==60){
+            min=0, hour = hour + 1;
+        }
+        div_dwell_time.innerHTML = "你停留了"+hour+ "小时"+min+"分"+sec+"秒";
+    }
+    var d_t = window.setInterval(get_dwell_time,1000);//每隔1000毫秒，也就是1秒，执行get_dwell_time函数
+}
+
+window.onload = function(){//等待页面加载完成后，执行这个函数
+    dwell_time('div_dwell_time');
+}
+
+
+</script>
+</head>
+<body>
+<div id="div_dwell_time"></div>
+</body>
+</html>
