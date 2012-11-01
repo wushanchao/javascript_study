@@ -46,7 +46,7 @@ function ind(x,y,z){
    
 
    
-Array.prototype.wsc1 = wsc(1);//指定实际函数在参数1位置
+Array.prototype.wsc1 = wsc(1);//指定实际函数在参数1位置。为什么要指定位置呢，本来是通过检测参数里面的类型是否函数，是则得出位置；后来发现，有些函数专门处理函数，所以这方法行不通。所以要指定位置。
 var numTemp1 = [1,2,3].wsc1(double);
 
 Array.prototype.wsc2 = wsc(2);//指定实际函数在参数2位置
