@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8" />
+<title>后序语法之函数参数和函数的位置调换</title>
+<script type="text/javascript">
+//函数参数和函数的位置调换
+var wsc = function(func_position){  
+
+    return function(){
+        var original_arry_len = this.length ,original_arry = this, Arg = arguments,Arg_length = arguments.length,return_array = [],real_func = Arg[func_position-1];
+        
+       
+        for(var j=0; j<original_arry_len;j++){//数组遍历
+            var Arg_array = [];
+            for(var i=0; i<Arg_length; i++){//遍历参数列表，然后找出实际函数所在位置，用数组元素代替
+                if(func_position-1 == i){
+                    Arg_array.push(original_arry[j])
+                }
+                else{
+                    Arg_array.push(Arg[i]);
+                }
+            
+            }
+            return_array[j] = real_func.apply(null,Arg_array);
+        }
+        
+        return return_array;
+    };
+
+}
+
+  
+function double(x){  
+    return x * 2;  
+}
+
+
+function inc(x,y){ 
+    return x + y;
+}
+
+function ind(x,y,z){
+    return x + y + z;
+}
+   
+
+   
+Array.prototype.wsc1 = wsc(1);//指定实际函数在参数1位置
+var numTemp1 = [1,2,3].wsc1(double);
+
+Array.prototype.wsc2 = wsc(2);//指定实际函数在参数2位置
+var numTemp2 = [1,2,3].wsc2(2,inc);
+
+Array.prototype.wsc3 = wsc(2);
+var numTemp3 = [1,2,3].wsc2(2,ind,3).wsc1(double);
+
+console.log(numTemp1);
+console.log(numTemp2);
+console.log(numTemp3);
+</script>
+</head>
+<body></body>
+</html>
