@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+<title>来自于新浪UED的继承方法</title>
+<script type="text/javascript">
+function Animal(){
+    this.species = "animal";
+    this.sleep = function(){
+        console.log('I am sleep at night');
+    };
+
+}
+
+function Cat(name,color){
+    this.name = name;
+    this.color = color;
+}
+
+Cat.prototype = new Animal();
+Cat.prototype.eat = function(){
+    console.log('fish is my delicious');
+};
+Cat.prototype.constructor = Cat;//修复Cat原型链丢失的bug
+var cat = new Cat('Kitty','fish');
+cat.eat();
+cat.sleep();
+console.log(Cat.prototype);
+console.log("cat是Cat的实例："+(cat instanceof Cat));
+console.log("cat也是Animal的实例："+(cat instanceof Animal));
+</script>
+</head>
+<body></body>
+</html>
