@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>获取url里面的参数</title>
+<script type="text/javascript">
+function parseQueryString(){
+    var url = location.search;//获取url里面?xx=xx的字符串
+    
+    if(url.indexOf('?') != -1){
+        var url_parameter_object = {};
+        var str = url.substr(1);//去掉?xx=xx字符串里面的?字符
+        var url_parameter_array = str.split("&");//以&为标记分隔成数组
+        for(var i=0; i<url_parameter_array.length; i++){//把数组里面元素，分配到对象里面
+            url_parameter_object[url_parameter_array[i].split("=")[0]] = url_parameter_array[i].split("=")[1];
+        }
+        return url_parameter_object;
+    }
+    else{
+        return null;
+    }
+}
+parseQueryString();
+</script>
+</head>
+<body></body>
+</html>
