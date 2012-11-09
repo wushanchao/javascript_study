@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>通用事件注册器</title>
+<script type="text/javascript">
+function addEvent(obj, sEv, fn)
+{
+    if(obj.attachEvent)//兼容IE
+    {
+        obj.attachEvent('on'+sEv, function (){
+            if(false==fn.call(obj))//这里用call是因为IE下事件绑定函数的this会丢失。
+            {
+                event.cancelBubble=true;
+                return false;
+            }
+        });
+    }
+    else
+    {
+        obj.addEventListener(sEv, function (ev){
+            if(false==fn.call(obj))
+            {
+                ev.cancelBubble=true;
+                ev.preventDefault();
+            }
+        }, false);
+    }
+}
+
+window.onload = function(){
+    var test_btn = document.getElementById('test_btn');
+    addEvent(test_btn,"mouseover",function(){
+        alert('移入我');
+    });
+    addEvent(test_btn,"click",function(){
+        alert('点击鼠标');
+    })
+    addEvent(test_btn,"mouseout",function(){
+        alert('移出我');
+    });
+};
+</script>
+</head>
+<body>
+<input type="button" id="test_btn" value="移入我，点我，移开我" />
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>数组去重</title>
+<script type="text/javascript">
+Array.prototype.test = "test";//问题根源
+function remove_repeat(arr){
+   if(!arr) return arr;
+   var a = {},b = [];
+   
+   // for(i in arr){
+   //    a[arr[i]] = 0;
+   // }
+   // 或者用hasOwnProperty
+   for(var i=0,length=arr.length;i<length;i++){
+    a[arr[i]] = 0;
+   }
+   for(var i in a){
+      b.push(i);
+   }
+   return b;
+}
+function remove_repeat_two(){
+    
+}
+
+var test_array1 = [3,4,6,3];
+var test_array2 = ['3','4','6','3'];
+var no_repeat_array = remove_repeat(test_array2);
+console.log(no_repeat_array);
+</script>
+</head>
+<body>
+
+</body>
+</html>
