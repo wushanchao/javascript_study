@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+<title>js冒泡排序</title>
+<script type="text/javascript">
+function bubble_sort(array){
+    var i,j,temp,array_length = array.length;
+    for(i=0; i<array_length; i++){//第n次
+        for(j=0; j<array_length; j++){//筛选出最大值，调换。虽然有重复比较，但是上一次循环已经得出最大值，所以不怕重复比较。
+            if(array[i] < array[j]){
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+    return array;
+}
+
+function bubble_sort2(array){
+    var i,j,temp,array_length = array.length;
+    for(i=array_length; i>0; i--){//第一层循环每次少一次
+        for(j=0; j<i-1; j++){//两两前后互换
+            if(array[j+1] < array[j]){
+                temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+        }
+    }
+    return array;
+}
+console.log(bubble_sort2([3,45,23,22,1,46,666]));
+
+</script>
+</head>
+<body>
+写一个冒泡排序算法。
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>3</title>
+<style type="text/css">
+*{
+    padding: 0;
+    margin:0;
+}
+a{
+    text-decoration:none;
+    color: #808080;
+}
+a:hover{
+    text-decoration:underline;
+}
+
+
+#login_box{
+    border:8px solid rgba(134,134,134,0.6);
+    width:358px;
+    font-size: 12px;
+    border-radius: 10px;
+    -moz-border-radius: 15px;
+    -moz-background-clip: padding;
+
+}
+#login_header{
+    height: 36px;
+    /*border:1px solid #000;*/
+    background-color: #f1f1f1;
+    padding:0 8px 0 20px;
+    line-height: 36px;
+    border-bottom:1px solid #cccccc;
+    /*border-top-right-radius: 16px;
+    border-top-left-radius:15px;*/
+}
+#login_header h2{
+    float: left;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login_header .close{
+    float: right;
+    height: 20px;
+    position: relative;
+    top:4px;
+}
+#login_body{
+
+    padding: 36px 60px 40px 44px
+}
+#login_body_inner{
+    /*border:1px solid #000;*/
+}
+
+#login_body_inner input{
+    width: 180px;
+    height: 26px;
+    border: 1px solid #C8C8C8;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+
+#username_box{
+    width: 248px;
+}
+#username_box label{
+    display: inline-block;
+    width: 54px;
+}
+
+#password_box {
+    margin-top: 14px;
+}
+#password_box label{
+    display: inline-block;
+    width: 54px;
+
+}
+#login_body_inner #password_input{
+    border-style: inset;
+}
+
+#submit_box{
+    margin-top: 12px;
+    padding-left: 60px;
+}
+#submit_box button{
+    width: 82px;
+    height: 28px;
+    background-color: #ff6633;
+    /*border:none;*/
+    color: #fff;
+    font-weight: bold;
+}
+</style>
+<script type="text/javascript">
+
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+<div id="login_box">
+    <div id="login_header">
+        <h2>淘宝会员登录</h2>
+        <div class="close">
+            <a href="#"><img src="xx.png" alt="x" title="关闭" /></a>
+        </div>
+    </div>
+    <div id="login_body">
+        <div id="login_body_inner">
+            <div id="username_box">
+                <label for="username_input">账户名</label>
+                <input type="text" id="username_input" />
+            </div>
+            <div id="password_box">
+                <label for="password_input">密 码</label>
+                <input type="password" id="password_input" />
+            </div>
+            <div id="submit_box"><button>登录</button>
+                <a href="#">忘记密码？</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

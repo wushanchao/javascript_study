@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>闪烁的文字</title>
+</head>
+<body>
+<h1 id="shanshuo" align="center">闪烁的文字</h1>
+<script type="text/javascript">
+    var color=new Array("0F","1F","2F","3F","4F","5F","6F","7F","8F","9F","AF","BF","CF","DF","EF","FF");//color为文字颜色的RGB值，令其由"0F"增至"FF"
+    var i=0,add=1; //i是数组color的坐标，add决定color的增减
+    // var myText = document.getElementById('shanshuo').style.color; 修改myText值不能影响，因为这是值传递
+    var shanshuo_style = document.getElementById('shanshuo').style;//这是引用传递
+    FadeText(shanshuo_style);
+    
+    function FadeText(h1_text){ 
+        h1_text.color="#"+color[i]+color[i]+color[i];  //document.fgColor确定文字颜色的RGB值//判断文字颜色是渐亮或是渐暗
+    　　if( add==1 ) { 
+            i++;　
+            if( i==15 ) {
+                add=0;
+            }
+    　　}
+    　　else{ 
+            i--;
+            if( i==0 ) {
+                add=1;
+            }
+    　　}
+        //设置每0.1秒运行一次函数FadeText()
+    　　setTimeout("FadeText(shanshuo_style)",150);
+    }
+    
+
+
+
+</script>
+</body>
+</html>

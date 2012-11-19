@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Firefox和IE之间的JavaScript差异</title>
+<script type="text/javascript">
+/*******CSS方面********/
+//获取flaot属性
+//IE
+document.getElementById("header").style.styleFloat = "left";
+//Firefox
+document.getElementById("header").style.cssFloat = "left"; 
+
+//获取class属性
+//IE
+var myObject = document.getElementById("header");  
+var myAttribute = myObject.getAttribute("className"); //IE8和Firefox一样了
+//Firefox
+var myObject = document.getElementById("header");  
+var myAttribute = myObject.getAttribute("class"); 
+
+//Alpha透明
+//IE
+var myObject = document.getElementById("myElement");  
+myObject.style.filter = "alpha(opacity=80)"; 
+//Firefox
+var myObject = document.getElementById("myElement");  
+myObject.style.opacity = "0.5"; 
+
+//元素的计算样式
+//IE
+var myObject = document.getElementById("header");  
+var myStyle = myObject.currentStyle.backgroundColor; 
+//Firefox
+var myObject = document.getElementById("header");  
+var myComputedStyle = document.defaultView.getComputedStyle(myObject, null);  
+var myStyle = myComputedStyle.backgroundColor; 
+
+
+/*******事件方面********/
+//获取鼠标位置
+//IE
+var myCursorPosition = [0, 0];  
+myCursorPosition[0] = event.clientX;  
+myCursorPosition[1] = event.clientY; 
+//Firefox
+var myCursorPosition = [0, 0];  
+myCursorPosition[0] = event.pageX;  
+myCursorPosition[1] = event.pageY; 
+
+//IE
+function get_event() {
+    alert(window.event);    // use window.event   
+}
+//Firefox
+function get_event(e){
+alert(e);
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

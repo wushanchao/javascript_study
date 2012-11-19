@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>  
+<head>  
+    <meta charset="utf-8" />
+    <title>微博的输入框</title>
+<script type="text/javascript">    
+function left_capacity()  {  
+    var Text_area = document.getElementById("Text_area");  
+    var result = document.getElementById("result");   
+    var left_length = 140-Text_area.value.length;   
+    if(Text_area !=null)  {    
+        if(left_length>=0)  {  
+            result.innerHTML = "您当前可以输入"+left_length+"个字符"; 
+            if (publish.disabled == true) {
+                publish.disabled = "";
+                publish.style.color = "";
+                publish.value = "发布";
+            }; 
+            
+        }  
+        else  {  
+            left_length = -left_length;  
+            result.innerHTML = "您当前输入的字符数已超出<span style='color:red;'>"+left_length+"</span>个字符"; 
+        }     
+    }  
+    
+}
+function change_color(){
+    var Text_area = document.getElementById("Text_area");
+    var publish = document.getElementById("publish");
+    if(Text_area.value.length === 0){
+        publish.style.color = "red";
+        publish.value = "请输入内容";
+        publish.disabled = true;
+    }
+}     
+</script>  
+</head>  
+<body>  
+如何实现微博为输入文字便提交的功能（输入框会变粉红色并闪几下，提醒用户要输入文字）  
+<div id = "result">您当前可以输入140 个字符</div>  
+请输入内容：  
+<textarea id="Text_area"  onkeyup="left_capacity()" cols="60" rows="3" >   
+</textarea><br/>  
+<input type ="button" id="publish" value = "发布" onclick = "change_color()"/>   
+</body>  
+</html>  

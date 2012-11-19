@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+<title>放大镜</title>
+<style type="text/css">
+*{margin: 0;padding: 0;}
+a img{
+    border:none;
+}
+#div1{
+    margin: 0 auto 0 100px;
+    width:400px;height: 400px;padding: 5px;border: 1px solid #ccc;position: relative;
+}
+#div1 .small_pic{
+    width: 400px;height: 400px;background: #eee;position: relative;
+}
+#div1 .float_layer{
+    width: 100px;height: 100px;border:1px solid #000;background: #fff;filter:alpha(opacity:30);opacity:0.3;position: absolute;top:0;left: 0;display:none- ;
+}
+#div1 .mark{
+    width: 100%;height: 100%;position: absolute;z-index: 2;left:0px;top:0px; background:red;filter:alpha(opacity:0);opacity:0;
+}
+#div1 .big_pic{
+    position: absolute;;top:-1px;left:430px;width:400px;height:400px;overflow: hidden;border:2px solid #ccc;display: none-;
+}
+#div1 .big_pic img{position: absolute;top: 0px;left: 0px;}
+</style>
+<script type="text/javascript">
+function getByClass(oParent, sClass){
+    var aEle=oParent.getElementsByTagName('*');
+    var aTmp=[];
+    var i=0;
+    
+    for(i=0;i<aEle.length;i++){
+        if(aEle[i].className==sClass){
+            aTmp.push(aEle[i]);
+        }
+    }
+    
+    return aTmp;
+}
+
+window.onload = function(){
+    var oDiv=document.getElementById('div1');
+    var oMark=getByClass(oDiv, 'mark')[0];
+    var oFloat=getByClass(oDiv, 'float_layer')[0];
+    var oBig=getByClass(oDiv, 'big_pic')[0];
+    var oSmall=getByClass(oDiv, 'small_pic')[0];
+    var oImg=oBig.getElementsByTagName('img')[0];
+
+    oMark.onmouseover = function(){
+        oFloat.style.display = 'block';
+        oBig.style.display = 'block';
+    };
+
+    oMark.onmouseout = function(){
+        oFloat.style.display = "none";
+        oBig.style.display ="none";
+    }
+
+    oMark.onmousemove= function(ev){
+        var oEvent = ev||event;
+        // 小方框位置等于 鼠标位置 减去 大方框的位置，再减去 oSmall的位置，再减去小方框位置的一半。那么鼠标就在小方框的中心位置了
+        var l = oEvent.clientX - oDiv.offsetLeft - oSmall.offsetLeft - oFloat.offsetWidth/2;
+        var t = oEvent.clientY - oDiv.offsetTop - oSmall.offsetTop - oFloat.offsetHeight/2;
+
+        if(l< 0){//检测小方框是否移出左边框
+            l=0;
+        }
+        if(t<0){//检测小方框是否移出上边框
+            t=0;
+        }
+        if(l > oMark.offsetWidth - oFloat.offsetWidth){//检测小方框是否移出右边边框
+            l = oMark.offsetWidth - oFloat.offsetWidth;
+
+        }
+        if(t>oMark.offsetHeight - oFloat.offsetHeight){//检测小方框是否移出下边边框
+            t = oMark.offsetHeight - oFloat.offsetHeight;
+        }
+        oFloat.style.left = l+"px";
+        oFloat.style.top = t+"px";
+
+        var percentX = l/(oMark.offsetWidth-oFloat.offsetWidth);//小方框的距离除以最大距离，就是一个比例了
+        var percentY = t / (oMark.offsetHeight-oFloat.offsetHeight);
+
+        oImg.style.left = percentX*(oBig.offsetWidth -oImg.offsetWidth ) + 'px';//通过父元素固定切overflow:hidden;子元素移动来，实现放大效果
+        oImg.style.top = percentY * (oBig.offsetHeight - oImg.offsetHeight ) + 'px';
+    }
+}
+</script>
+</head>
+<body>
+<div id="div1">
+    <div class="small_pic">
+        <span class="mark"></span>
+        <span class="float_layer"></span>
+        <img src="8/small.jpg" alt="" />
+    </div>
+    <div class="big_pic">
+        <img src="8/big.jpg" alt="" />
+    </div>
+</div>
+</body>
+</html>

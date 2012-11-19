@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8" />
+<title>正则</title>
+<script type="text/javascript">
+function check_email_fromat(string_email){
+	var check_regular=/^\w+@\w+(\.\w+)\.[a-z]{2,4}$/;//验证 xxx@xxx.xx.xx格式
+	if(check_regular.test(string_email)){
+		return "通过";
+	}
+	else{
+		return "未通过";
+	}
+}
+
+function main(){
+	var btn = document.getElementById('btn');
+	var email_string = document.getElementById('email_string');
+	btn.onclick = function(){
+		alert(check_email_fromat(email_string.value)); 
+	};
+}
+
+window.onload = function(){
+	main();
+}
+</script>
+</head>
+<body>
+写一段JS的正则表达式，最少10位。
+<input type="text" id="email_string" /><input id="btn" type="button" value="验证电子邮箱格式"/>
+</body>
+</html>

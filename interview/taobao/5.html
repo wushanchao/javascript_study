@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>第五道题目解答</title>
+<style type="text/css">
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration:none;
+    color: #000;
+}
+a:hover{
+    text-decoration:underline;
+}
+
+#zhifubao_body{
+    display: none;
+}
+</style>
+<script type="text/javascript">
+function myTab(anchor_arry,body_array){
+    // 思路：先全部隐藏，再只显示一个
+    function display_all_none(){
+        for(var j=0; j<body_array.length;j++){
+            body_array[j].style.display = "none";
+         }
+    }
+     
+    for(var i=0; i<anchor_arry.length;i++){
+        anchor_arry[i].onclick = (function(i){
+            return function(){
+                display_all_none();
+                body_array[i].style.display = "block";
+            };           
+        })(i);
+    }
+}
+
+window.onload=function () {
+    var taobao_anchor = document.getElementById("taobao_anchor");
+    var zhifubao_anchor = document.getElementById("zhifubao_anchor");
+    var taobao_body = document.getElementById("taobao_body");
+    var zhifubao_body = document.getElementById("zhifubao_body");
+
+    // taobao_anchor.onclick = function(){
+    //    taobao_body.style.display = "block";
+    //    zhifubao_body.style.display = "none";
+    // };
+    // zhifubao_anchor.onclick = function(){
+    //    taobao_body.style.display = "none";
+    //    zhifubao_body.style.display = "block";
+    // };
+
+    var anchor_arry = [taobao_anchor,zhifubao_anchor];
+    var body_array = [taobao_body,zhifubao_body];
+
+    myTab(anchor_arry, body_array);
+
+    var username_input = document.getElementById('username_input');
+    username_input.onblur = function(){
+        var Reg_Phone = /^(1)([358])(\d{9})$/;
+        var Reg_email = /^([a-zA-Z0-9_\.\-])+(\@)(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,5})$/;
+        // if(!Reg_Phone.test(username_input.value)){
+        //     alert('不是正确的手机号');
+        // }
+        if(Reg_email.test(username_input.value) || Reg_Phone.test(username_input.value) ){
+            
+        }
+        else{
+            alert('不是正确的手机号或者不是正确的邮箱');
+        }
+    };
+    
+};
+</script>
+</head>
+<body>
+<div id="login_box">
+    <div class="tab">
+        <ul>
+            <li><h2><a id="taobao_anchor" href="#">淘宝会员</a></h2></li>
+            <li><h2><a id="zhifubao_anchor" href="#">支付宝会员</a></h2></li>
+        </ul>
+    </div>
+    <div id="taobao_body">
+        <div class="body_inner">
+            <form action="#">
+                <div id="username">
+                    <label>淘宝账户名</label>
+                    <span>手机号/邮箱</span>
+                    <input type="text" id="username_input" />
+                </div>
+                <div id="password">
+                    <label>密码</label>
+                    <input type="password" />
+                </div>
+                <div id="no_login">
+                    <span>
+                        <input type="checkbox" />
+                        <label>两周内免登录</label>
+                    </span>
+                </div>
+                <div class="submit">
+                    <button>登录</button>
+                    <a>忘记密码？</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="zhifubao_body">
+        <div class="body_inner">
+            <form action="#">
+                <div id="username">
+                    <label>支付宝账户名</label>
+                    <span>手机号/邮箱</span>
+                    <input type="text" />
+                </div>
+                <div id="password">
+                    <label>密码</label>
+                    <input type="password" />
+                </div>
+                <div id="no_login">
+                    <span>
+                        <input type="checkbox" />
+                        <label>两周内免登录</label>
+                    </span>
+                </div>
+                <div class="submit">
+                    <button>登录</button>
+                    <a>忘记密码？</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

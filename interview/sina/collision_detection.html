@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网页边缘碰撞检测</title>
+<script>
+
+
+function startMove()
+{
+	var iSpeedX=6;
+	var iSpeedY=8;
+	setInterval(function (){
+		var oDiv=document.getElementById('div1');
+		var l=oDiv.offsetLeft+iSpeedX;//offsetLeft指元素视觉上的位置，包括margin
+		var t=oDiv.offsetTop+iSpeedY;
+		
+		if(t>=document.documentElement.clientHeight-oDiv.offsetHeight)//碰撞检测，检测物体是否到达网页底部
+		{
+			iSpeedY*=-1;
+			t=document.documentElement.clientHeight-oDiv.offsetHeight;//把t放在网页到达或者超过最底部
+		}
+		else if(t<=0)//表示物体到达或者超过网页顶部
+		{
+			iSpeedY*=-1;
+			t=0;
+		}
+		
+		if(l>=document.documentElement.clientWidth-oDiv.offsetWidth)//表示物体到达或超过网页最右边(不带滚动条)
+		{
+			iSpeedX*=-1;
+			l=document.documentElement.clientWidth-oDiv.offsetWidth;
+		}
+		else if(l<=0)//表示物体到达或者超过网页最左边
+		{
+			iSpeedX*=-1;
+			l=0;
+		}
+		
+		oDiv.style.left=l+'px';
+		oDiv.style.top=t+'px';
+	}, 30);
+}
+</script>
+</head>
+
+<body>
+<input type="button" value="开始运动" onclick="startMove()" />
+<div id="div1">
+</div>
+</body>
+</html>
