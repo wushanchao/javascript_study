@@ -58,6 +58,63 @@ var numTemp3 = [1,2,3].wsc2(2,ind,3).wsc1(double);
 console.log(numTemp1);
 console.log(numTemp2);
 console.log(numTemp3);
+var log = function(s){
+    console.log(s);
+}
+var test_array = [5,6,7];
+test_array.wsc1 = wsc(1);
+console.log(test_array.wsc1(function(a){return a+1;}));
+
+// 同步操作
+[1].wsc1(function(a){
+    setTimeout(function(){
+        a +=  10
+        log(a);//11
+        return a;
+    },1000);
+    return a;
+}).wsc1(function (b) {
+    b += 12
+    log(b);//23
+    return b;
+}).wsc1(function(c){
+    c += 130
+    log(c);//153
+    return c;
+});
+
+// 并行异步操作
+[1].wsc1(function(a){
+    var timer = setInterval(function(){
+        a++;
+        log("第一个列队的第"+a+"个操作");
+        if(a==10){
+            clearInterval(timer);
+        }
+    },1000);
+    return a;
+});
+[1].wsc1(function(a){
+    var timer = setInterval(function(){
+        a++;
+        log("第一个列队的第"+a+"个操作");
+        if(a==10){
+            clearInterval(timer);
+        }
+    },1000);
+    return a;
+});
+[1].wsc1(function(a){
+    var timer = setInterval(function(){
+        a++;
+        log("第一个列队的第"+a+"个操作");
+        if(a==10){
+            clearInterval(timer);
+        }
+    },1000);
+    return a;
+});
+
 </script>
 </head>
 <body></body>
